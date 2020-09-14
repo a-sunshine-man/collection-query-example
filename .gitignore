@@ -1,4 +1,10 @@
 # Project exclude paths
-/target/
-*.xml
+.classpath
+.project
 .idea/
+.settings/
+.svn/
+*.iml
+*.war
+target/
+*.jar
