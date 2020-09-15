@@ -1,4 +1,4 @@
-package com.yangyang.job.model;
+package com.yangyang.example.model;
 
 import lombok.Data;
 

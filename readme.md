@@ -1,6 +1,4 @@
-我这个职位的JD是 https://job.alibaba.com/zhaopin/position_detail.htm?trace=qrcode_share&positionCode=GP650159
-如果你有意向，请抽空完成以下笔试：
-用Java实现一个类似SQL查询的服务，参数模型自己设计：
+课题要求：用Java实现一个类似SQL查询的服务，参数模型自己设计：
  入参：
   - 类比某张表内全量数据
   - 过滤条件，支持多个，与/或

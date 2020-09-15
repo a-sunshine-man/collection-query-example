@@ -1,6 +1,6 @@
-package com.yangyang.job.helper;
+package com.yangyang.example.helper;
 
-import com.yangyang.job.model.Device;
+import com.yangyang.example.model.Device;
 
 import java.util.Collections;
 import java.util.List;
