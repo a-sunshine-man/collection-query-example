@@ -1,4 +1,4 @@
-package com.yangyang.example.model;
+package com.yangyang.example.entity;
 
 import lombok.Data;
 

@@ -1,6 +1,8 @@
 package com.yangyang.example.helper;
 
-import com.yangyang.example.model.Device;
+import com.yangyang.example.entity.Device;
+import com.yangyang.example.model.OrderWrapper;
+import com.yangyang.example.model.WhereWrapper;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +15,7 @@ public class CollectionCustomQueryHelper<T> {
         this.dataList = dataList;
     }
 
-    public List<T> queryByWrapper(long maxSize){
+    public List<T> queryByWrapper(WhereWrapper whereWrapper, OrderWrapper orderWrapper, long maxSize){
         if (dataList == null || dataList.isEmpty()){
             return Collections.emptyList();
         }
@@ -24,8 +26,9 @@ public class CollectionCustomQueryHelper<T> {
 
     public static void main(String[] args) {
         List<Device> list = Device.mockDataList(1000);
-        //list.sort(Comparator.comparing(Device).reversed().thenComparing().);
 
+
+        //list.sort(Comparator.comparing(Device).reversed().thenComparing().);
 //        CollectionCustomQueryHelper helper = new CollectionCustomQueryHelper(list);
 //        List query = helper.queryByWrapper(10);
 //        System.out.println(query);
