@@ -2,9 +2,9 @@ package com.yangyang.job.helper;
 
 import com.yangyang.job.model.Device;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CollectionCustomQueryHelper<T> {
     private List<T> dataList;
@@ -13,16 +13,21 @@ public class CollectionCustomQueryHelper<T> {
         this.dataList = dataList;
     }
 
-    public List<T> queryByWrapper(){
+    public List<T> queryByWrapper(long maxSize){
         if (dataList == null || dataList.isEmpty()){
             return Collections.emptyList();
         }
-
-        return null;
+        //实现最大返回结果数
+        List<T> resultList = dataList.stream().limit(maxSize).collect(Collectors.toList());
+        return resultList;
     }
 
     public static void main(String[] args) {
         List<Device> list = Device.mockDataList(1000);
+        //list.sort(Comparator.comparing(Device).reversed().thenComparing().);
 
+//        CollectionCustomQueryHelper helper = new CollectionCustomQueryHelper(list);
+//        List query = helper.queryByWrapper(10);
+//        System.out.println(query);
     }
 }
