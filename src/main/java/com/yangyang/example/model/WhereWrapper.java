@@ -1,5 +1,6 @@
 package com.yangyang.example.model;
 
+import com.yangyang.example.enums.WhereConnEnum;
 import lombok.Data;
 
 /**
@@ -15,12 +16,28 @@ public class WhereWrapper {
      */
     private String fieldName;
     /**
-     * 过滤条件
+     * 筛选字段值
      */
-    private Condition condition;
+    private Object fieldVal;
 
-    public enum Condition{
-        EQ,
-        NE
+    /**
+     * 多个条件查询时指定查询的方式，默认：与
+     */
+    private WhereConnEnum connectionType;
+    private WhereWrapper(){ }
+
+    public static WhereWrapper build(String fieldName, Object fieldVal) {
+        WhereWrapper wrapper = new WhereWrapper();
+        wrapper.fieldName = fieldName;
+        wrapper.fieldVal = fieldVal;
+        return wrapper;
+    }
+
+    public static WhereWrapper build(String fieldName, Object fieldVal, WhereConnEnum connectionType) {
+        WhereWrapper wrapper = new WhereWrapper();
+        wrapper.fieldName = fieldName;
+        wrapper.fieldVal = fieldVal;
+        wrapper.setConnectionType(connectionType);
+        return wrapper;
     }
 }
