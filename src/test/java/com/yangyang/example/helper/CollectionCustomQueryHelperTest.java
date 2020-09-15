@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -52,7 +53,7 @@ public class CollectionCustomQueryHelperTest {
     @Test
     public void queryBySingleWhere(){
         boolean fieldVal = true;
-        List<WhereWrapper> whereWrapper = Arrays.asList(WhereWrapper.build("active", fieldVal));
+        List<WhereWrapper> whereWrapper = Collections.singletonList(WhereWrapper.build("active", fieldVal));
         List<Device> list = queryHelper.query(whereWrapper, null, null);
         assertNotNull(list);
         assertTrue(list.size() > 0);
