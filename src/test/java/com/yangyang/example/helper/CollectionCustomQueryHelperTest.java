@@ -2,12 +2,11 @@ package com.yangyang.example.helper;
 
 import com.yangyang.example.entity.Device;
 import com.yangyang.example.enums.WhereConnEnum;
+import com.yangyang.example.model.OrderWrapper;
 import com.yangyang.example.model.WhereWrapper;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -87,4 +86,18 @@ public class CollectionCustomQueryHelperTest {
                 .filter(e->!list.contains(e))
                 .forEach(e-> assertFalse(fieldVal == e.getActive() && DEV_NAME.equals(e.getDevName())));
     }
+    /**
+     * 测试单个排序功能
+     */
+    @Test
+    public void queryAndSingletonSort(){
+        List<OrderWrapper> orders = Collections.singletonList(
+                OrderWrapper.build("secret", OrderWrapper.Condition.DESC)
+        );
+        List<Device> list = queryHelper.query(null, orders, null);
+        //返回的数据符合输入的条件
+        assertNotNull(list);
+        assertTrue(list.size() > 0);
+    }
+
 }

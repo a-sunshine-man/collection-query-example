@@ -20,7 +20,16 @@ public class OrderWrapper {
     private Condition condition;
 
     public enum Condition{
-        ORDER_BY_ASC,
-        ORDER_BY_DESC
+        ASC,
+        DESC
+    }
+
+    private OrderWrapper() { }
+
+    public static OrderWrapper build(String fieldName, Condition condition) {
+        OrderWrapper orderWrapper = new OrderWrapper();
+        orderWrapper.fieldName = fieldName;
+        orderWrapper.condition = condition;
+        return orderWrapper;
     }
 }
