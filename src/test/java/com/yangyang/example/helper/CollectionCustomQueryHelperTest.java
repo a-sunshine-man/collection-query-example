@@ -66,10 +66,10 @@ public class CollectionCustomQueryHelperTest {
                 .forEach(e-> assertNotEquals(fieldVal,e.getActive()));
     }
     /**
-     * 测试多个过滤条件
+     * 测试多个都满足的滤条件
      */
     @Test
-    public void queryWhereByMoreField(){
+    public void queryWhereByMoreFieldFull(){
         boolean fieldVal = true;
         List<WhereWrapper> whereWrappers = Arrays.asList(
                 WhereWrapper.build("active", fieldVal),
@@ -87,6 +87,28 @@ public class CollectionCustomQueryHelperTest {
         queryHelper.getDataList().parallelStream()
                 .filter(e->!list.contains(e))
                 .forEach(e-> assertFalse(fieldVal == e.getActive() && DEV_NAME.equals(e.getDevName())));
+    }
+    /**
+     * 测试多个非全满足的滤条件
+     */
+    @Test
+    public void queryWhereByMoreFieldNotFull(){
+        Integer fieldVal = 10;
+        List<WhereWrapper> whereWrappers = Arrays.asList(
+                WhereWrapper.build("secret", fieldVal),
+                WhereWrapper.build("devName",DEV_NAME, WhereConnEnum.OR)
+        );
+        List<Device> list = queryHelper.query(whereWrappers, null, null);
+        //返回的数据符合输入的条件
+        assertNotNull(list);
+        assertTrue(list.size() > 0);
+        list.forEach( e-> assertTrue(
+                fieldVal.equals(e.getSecret())
+                        || DEV_NAME.equals(e.getDevName())));
+        //未返回的数据都不符合输入条件
+        queryHelper.getDataList().parallelStream()
+                .filter(e->!list.contains(e))
+                .forEach(e-> assertFalse(fieldVal.equals(e.getSecret()) || DEV_NAME.equals(e.getDevName())));
     }
     private void checkSortResult(List<Device> list, List<Device> listSource) {
         //返回的数据符合输入的条件
