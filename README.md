@@ -27,3 +27,8 @@
 - 过滤条件，支持多个，与/或
 - 排序，支持多个，以及升序倒序
 - 分组，支持多个$\color{#FF0000}{未做}$；原因：与以上功能返回结构冲突（此条返回一般为Map结构，以上功能返回List结构）>>>问了BOSS未给出答复。
+####主要资源文件说明；
+- 核心功能源代码：com.yangyang.example.helper.CollectionCustomQueryHelper
+- 单元测试：com.yangyang.example.helper.CollectionCustomQueryHelperTest
+- 测试覆盖率报告：com.yangyang.example.helper.test-coverage-report.index.html
+- 数据参数模型：com.yangyang.example.entity.Device
