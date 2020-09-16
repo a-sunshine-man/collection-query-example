@@ -32,3 +32,7 @@
 - 单元测试：com.yangyang.example.helper.CollectionCustomQueryHelperTest
 - 测试覆盖率报告：com.yangyang.example.helper.test-coverage-report.index.html
 - 数据参数模型：com.yangyang.example.entity.Device
+####开发环境
+- jdk1.8.0_191
+- idea 2019.3
+- maven apache-maven-3.6.0
