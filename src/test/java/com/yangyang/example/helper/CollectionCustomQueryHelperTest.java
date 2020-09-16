@@ -46,7 +46,7 @@ public class CollectionCustomQueryHelperTest {
         long maxSize = 10L;
         List<Device> list = queryHelper.query(null, null, maxSize);
         assertNotNull(list);
-        assertTrue(list.size() == maxSize);
+        assertEquals(maxSize,list.size());
     }
     /**
      * 测试单个过滤条件
