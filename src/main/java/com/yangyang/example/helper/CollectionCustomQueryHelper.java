@@ -10,6 +10,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 @Getter
@@ -27,10 +28,9 @@ public class CollectionCustomQueryHelper {
         //获取当前成员class对象，流对象
         Class<? extends Device> elClazz = dataList.get(0).getClass();
         Stream<Device> stream = dataList.stream();
-
         //筛选
         if (wheres != null && !wheres.isEmpty()) {
-            stream = stream.filter(e -> getFilterResult(wheres, elClazz, e));
+            stream = stream.parallel().filter(e -> getFilterResult(wheres, elClazz, e));
         }
         //排序
         if (orders != null && !orders.isEmpty()) {
@@ -52,7 +52,7 @@ public class CollectionCustomQueryHelper {
         }
         return stream.collect(Collectors.toList());
     }
-
+    private AtomicInteger cnt = new AtomicInteger();
     private boolean getFilterResult(List<WhereWrapper> wheres, Class<? extends Device> elClazz, Device e) {
         boolean resultFlag = false;
         for (int i = 0; i < wheres.size(); i++) {
